@@ -26,6 +26,20 @@ Tutto gira nel browser: il video non viene mai caricato su un server.
 - La prima volta i tracker impiegano qualche secondo a caricarsi.
 - Scena dimostrativa senza fotocamera: aggiungi `#demo` all'indirizzo, ad esempio `https://<tuo-utente>.github.io/x-ray-mirror/#demo`.
 
+## Dispositivi
+
+La pagina contiene uno script di avvio della fotocamera (`window.XRCamera` in `index.html`) pensato per Mac, PC Windows, Android, iPhone e iPad:
+
+- **Browser consigliati:** Chrome o Edge su computer, Chrome su Android, Safari su iPhone e iPad (aggiornati).
+- **Impostazioni di ripiego:** se la fotocamera rifiuta la risoluzione 1280×720, lo script riprova con impostazioni più semplici.
+- **iPhone e iPad:** il video parte muto e "inline", come richiede iOS.
+- **Rotazione del telefono:** il riquadro si adatta quando il telefono passa da verticale a orizzontale.
+- **Ritorno all'app:** se il telefono sospende la fotocamera mentre sei in un'altra app, al ritorno riparte da sola.
+- **Più fotocamere:** se il computer ne ha più di una (webcam USB, fotocamere virtuali), compare il menu **Camera** per sceglierla. La scelta viene ricordata.
+- **Fotocamera bloccata o occupata:** la pagina spiega cosa fare su quel dispositivo, per esempio come riattivare il permesso su iPhone, Android, Mac o Windows, o di chiudere Zoom/Teams se la stanno usando.
+- **Browser interni delle app** (Instagram, Facebook, TikTok, LinkedIn…): di solito non possono usare la fotocamera. La pagina lo segnala, offre **Copy link** e su Android anche **Open in Chrome**.
+- **Tracker:** se il tracciamento si blocca usando la scheda grafica, la pagina passa da sola a una modalità più lenta ma più compatibile.
+
 ## Da sapere
 
 - La fotocamera funziona solo su HTTPS, che GitHub Pages fornisce automaticamente.
