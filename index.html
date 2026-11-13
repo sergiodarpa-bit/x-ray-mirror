@@ -255,11 +255,15 @@ window.XRCamera = (() => {
     return "The camera could not start: " + ((err && err.message) || name || "unknown error") + ".";
   }
 
-  // reopens this page in Chrome from an Android app's built-in browser
-  const chromeIntent = os === "android"
-    ? "intent://" + location.host + location.pathname + location.search + "#Intent;scheme=https;package=com.android.chrome;end" : "";
+  // the address people see and share: when another site shows this page in a frame, that site's address
+  const embedded = window.top !== window;
+  const shareUrl = embedded && /^https?:\/\//.test(document.referrer) ? document.referrer.split("#")[0] : location.href.split("#")[0];
 
-  return { os, inApp, inAppHint, chromeIntent, open, attach, stop, cameras, deviceIdOf, explain };
+  // reopens the page in Chrome from an Android app's built-in browser
+  const chromeIntent = os === "android"
+    ? "intent://" + shareUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end" : "";
+
+  return { os, inApp, inAppHint, chromeIntent, embedded, shareUrl, open, attach, stop, cameras, deviceIdOf, explain };
 })();
 </script>
 
@@ -916,11 +920,14 @@ document.addEventListener("visibilitychange", () => {       // phones pause or e
   else if (video.paused) video.play().catch(() => {});
 });
 $("copylink").onclick = async () => {
-  const url = location.href.split("#")[0];
+  const url = CAM.shareUrl;
   try { await navigator.clipboard.writeText(url); $("copylink").textContent = "Link copied"; }
   catch (e) { window.prompt("Copy this link:", url); }
 };
-if (CAM.chromeIntent) { $("openchrome").href = CAM.chromeIntent; $("openchrome").hidden = false; }
+if (CAM.chromeIntent) {
+  $("openchrome").href = CAM.chromeIntent; $("openchrome").hidden = false;
+  if (CAM.embedded) $("openchrome").target = "_top";        // leave the frame, not just the page inside it
+}
 if (!DEMO && CAM.inApp) showIntro(CAM.inAppHint, "hint");
 
 $("start").onclick = async () => {
