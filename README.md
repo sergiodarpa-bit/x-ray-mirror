@@ -25,6 +25,7 @@ Tutto gira nel browser: il video non viene mai caricato su un server.
 - Apri il link in **Chrome o Edge** (desktop o Android), clicca **Start camera** e consenti l'accesso alla fotocamera.
 - La prima volta i tracker impiegano qualche secondo a caricarsi.
 - Scena dimostrativa senza fotocamera: aggiungi `#demo` all'indirizzo, ad esempio `https://<tuo-utente>.github.io/x-ray-mirror/#demo`.
+- **Lingua:** inglese o italiano. Con `?lang=it` la pagina è in italiano e con `?lang=en` in inglese, ad esempio `https://<tuo-utente>.github.io/x-ray-mirror/?lang=it`. Senza indicazione, la pagina segue la lingua del browser. La traduzione copre comandi, messaggi della fotocamera, dati di tracciamento ed etichette anatomiche.
 
 ## Dispositivi
 
